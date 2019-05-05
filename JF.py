@@ -24,7 +24,6 @@ issues = set([x for x in volumes.xpath('//a[@href]/@href') if re.search('/\d{4}/
 
 for issue in issues:
     print(issue)
-    year = re.findall('/\d{4}/',issue)[0]
     issue_res = requests.get(url + issue,headers=headers)
 
     elem = html.document_fromstring(issue_res.content)

@@ -11,7 +11,11 @@ parser.add_argument('year', type=int, help='The year of articles to download')
 args = parser.parse_args()
 year = args.year
 url = 'https://onlinelibrary.wiley.com'
-os.mkdir(f'{year}_JF')
+
+try:
+    os.mkdir(f'{year}_JF')
+except:
+    pass
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',

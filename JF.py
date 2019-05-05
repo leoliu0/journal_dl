@@ -3,6 +3,7 @@ from lxml import html
 import re
 import shutil
 import argparse
+import os
 
 parser = argparse.ArgumentParser(description='Specify year to download')
 parser.add_argument('year', type=int, help='The year of articles to download')
@@ -10,6 +11,7 @@ parser.add_argument('year', type=int, help='The year of articles to download')
 args = parser.parse_args()
 year = args.year
 url = 'https://onlinelibrary.wiley.com'
+os.mkdir(f'{year}_JF')
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
@@ -31,6 +33,6 @@ for issue in issues:
 
     for doi,fname in zip(dois,fnames):
         pdf = requests.get(url+doi,headers=headers,stream=True)
-        fname =  year.strip('/')+ '_' + fname.replace(' ','_') + '.pdf'
+        fname =  os.path.join(f'{year}_JF/', fname.replace(' ','_')+ year.strip('/')+ '.pdf')
         with open(fname,'wb') as f:
             shutil.copyfileobj(pdf.raw,f)

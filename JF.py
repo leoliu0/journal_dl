@@ -36,6 +36,6 @@ for issue in issues:
 
     for doi,fname in zip(dois,fnames):
         pdf = requests.get(url+doi,headers=headers,stream=True)
-        fname =  os.path.join(f'{year}_JF/', fname.replace(' ','_')+ year.strip('/')+ '.pdf')
+        fname =  os.path.join(f'{year}_JF/', fname.replace(' ','_')+ '_' + str(year) + '.pdf')
         with open(fname,'wb') as f:
             shutil.copyfileobj(pdf.raw,f)

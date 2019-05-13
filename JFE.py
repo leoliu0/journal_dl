@@ -2,9 +2,7 @@ import requests
 from lxml import html
 import shutil
 import os
-
 import argparse
-import os
 parser = argparse.ArgumentParser(description='Specify year to download')
 parser.add_argument('year', type=int, help='The year of articles to download')
 args = parser.parse_args()

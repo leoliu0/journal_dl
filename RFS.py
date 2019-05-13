@@ -31,6 +31,7 @@ for issue in range(1,13):
     articles = [x for x in b.xpath('//a[@href]/@href') if re.search(r'/rfs/article/\d*/\d*/\d*/\d*$',x)]
     for art in articles:
         title = b.xpath('//a[@href="{}"]/text()'.format(art))[0].replace(' ','_').replace(':','_')+'.pdf'
+        print(title)
         path = os.path.join(f'{year}_RFS',title)
         if os.path.isfile(path):
             continue

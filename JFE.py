@@ -22,7 +22,6 @@ start_vol_no = (year - 2000) * 4 + 55
 for vol in range(start_vol_no, start_vol_no+4):
     for issue_no in range(1,4):
         issue_url = f'https://www.sciencedirect.com/journal/journal-of-financial-economics/vol/{vol}/issue/{issue_no}'
-        print(issue_url)
         a = requests.get(issue_url,headers=headers)
         b = html.document_fromstring(a.text)
 
@@ -30,6 +29,7 @@ for vol in range(start_vol_no, start_vol_no+4):
         pdfurl = [x for x in b.xpath('//a[@href]/@href') if 'md5' in x]
         for title,pdfurl in zip(titles, pdfurl):
             title = title.replace(' ','_').replace(':','_')+'.pdf'
+            print(title)
             path = os.path.join(f'{year}_JFE',title)
             # skip downloaded pdfs
             if os.path.isfile(path):

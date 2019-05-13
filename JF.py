@@ -27,7 +27,6 @@ volumes = html.document_fromstring(volume.content)
 issues = set([x for x in volumes.xpath('//a[@href]/@href') if re.search('/\d{4}/',x)])
 
 for issue in issues:
-    print(issue)
     issue_res = requests.get(url + issue,headers=headers)
 
     elem = html.document_fromstring(issue_res.content)
@@ -37,5 +36,6 @@ for issue in issues:
     for doi,fname in zip(dois,fnames):
         pdf = requests.get(url+doi,headers=headers,stream=True)
         fname =  os.path.join(f'{year}_JF/', fname.replace(' ','_')+ '_' + str(year) + '.pdf')
+        print(fname)
         with open(fname,'wb') as f:
             shutil.copyfileobj(pdf.raw,f)

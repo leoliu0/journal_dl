@@ -42,7 +42,8 @@ for issue in issues:
             names.append(name)
 
     for id, ae, name in zip(ids,aer,names):
-        name = os.path.join(f'{year}_AER',name.replace(' ','_').replace(':','_')+'.pdf')
+        name = os.path.join(f'{year}_AER',name.replace(' ','_').replace(':','_').replace('?','')+'.pdf')
+        print(name)
         with open(name,'wb') as f:
             content = requests.get(f'https://pubs.aeaweb.org/doi/pdfplus/{id}/{ae}',stream=True)
             shutil.copyfileobj(content.raw,f)

@@ -1,8 +1,8 @@
 #!/bin/bash
 
 year=$(($1-1987))
-mkdir rfs_$1
-cd rfs_$1
+mkdir $1_rfs
+cd $1_rfs
 
 rm issues.txt
 

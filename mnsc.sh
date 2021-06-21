@@ -2,8 +2,8 @@
 
 vol=$(($1-1954))
 
-mkdir mnsc_$1
-cd mnsc_$1
+mkdir $1_mnsc
+cd $1_mnsc
 
 rm links.txt
 
